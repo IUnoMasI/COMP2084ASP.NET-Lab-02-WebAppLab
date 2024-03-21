@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <!-- Display logout button if user is signed in -->
+    <form method="post" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" class="form-inline">
+        <button type="submit" class="btn btn-link text-dark">Logout</button>
+    </form>
+}
+else
+{
+    <!-- Display login and register links -->
+    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+    <!-- Sign in with GitHub button -->
+    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/ExternalLogin" asp-route-provider="GitHub">Sign in with GitHub</a>
+}
